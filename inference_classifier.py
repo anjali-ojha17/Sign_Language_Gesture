@@ -23,7 +23,7 @@ labels_dict = {0: 'A', 1: 'B', 2: 'L'}
 
 #Main loop for real-time gesture recognition:
 while True:
-
+##
     #Initialization:
     data_aux = []
     x_ = []
