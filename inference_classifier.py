@@ -3,7 +3,9 @@ import pickle
 import cv2
 import mediapipe as mp
 import numpy as np
-
+import pyautogui
+from pyautogui import click, displayMousePosition, typewrite, hotkey
+import time
 #Load the trained model from a pickle file:
 model_dict = pickle.load(open('./model.p', 'rb'))
 model = model_dict['model']
@@ -19,7 +21,7 @@ mp_drawing_styles = mp.solutions.drawing_styles
 hands = mp_hands.Hands(static_image_mode=True, min_detection_confidence=0.3)
 
 #Define a dictionary mapping class indices to labels:
-labels_dict = {0: 'A', 1: 'B', 2: 'C', 3: 'D', 4: 'E', 5: 'F', 6: 'G', 7: 'H', 8: 'I', 9: 'J', 10: 'K', 11: 'L', 12: 'M', 13: 'N', 14: 'O', 15: 'P', 16: 'Q', 17: 'R', 18: 'S',19: 'T', 20: 'U', 21: 'V', 22: 'W', 23: 'X', 24: 'Y', 25: 'Z'}
+labels_dict = {0: 'A', 1: 'B', 2: 'C', 3: 'D', 4:'E', 5:'F', 6:'G',7:'H'}
 
 #Main loop for real-time gesture recognition:
 while True:
@@ -74,8 +76,23 @@ while True:
         prediction = model.predict([np.asarray(data_aux)])
         predicted_character = labels_dict[int(prediction[0])]
         cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 0, 0), 4)
-        cv2.putText(frame, predicted_character, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 1.3, (0, 0, 0), 3,
-                    cv2.LINE_AA)
+        if predicted_character=='D':
+            pyautogui.press('volumeup')
+        elif predicted_character=='E':
+            pyautogui.press('volumedown')
+        elif predicted_character=='F':
+            click(189, 56)
+            typewrite('youtube.com')
+            hotkey('enter')
+            time.sleep(4)
+        elif predicted_character == 'G':
+            pyautogui.press('volumemute')
+            time.sleep(4)
+        elif predicted_character=='H':
+            break
+        else:       
+            cv2.putText(frame, predicted_character, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 1.3, (0, 0, 0), 3,
+                        cv2.LINE_AA)
        
     #Display the Frame:
     cv2.imshow('frame', frame)
@@ -84,4 +101,3 @@ while True:
 #Release the webcam and close all windows: 
 cap.release()
 cv2.destroyAllWindows()
-print("hello")
