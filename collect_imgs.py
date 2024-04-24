@@ -9,6 +9,7 @@ if not os.path.exists(DATA_DIR):
     os.makedirs(DATA_DIR)
 
 number_of_classes = 26
+#all 26 alphabets
 dataset_size = 100
 
 #Open the webcam:
