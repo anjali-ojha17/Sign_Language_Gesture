@@ -21,7 +21,7 @@ mp_drawing_styles = mp.solutions.drawing_styles
 hands = mp_hands.Hands(static_image_mode=True, min_detection_confidence=0.3)
 
 #Define a dictionary mapping class indices to labels:
-labels_dict = {0: 'A', 1: 'B', 2: 'C', 3: 'D', 4:'E', 5:'F', 6:'G',7:'H'}
+labels_dict = {0: 'A', 1: 'B', 2: 'C', 3: 'D', 4:'E', 5:'F', 6:'G',7:'H', 8:'I'}
 
 #Main loop for real-time gesture recognition:
 while True:
@@ -88,8 +88,7 @@ while True:
         elif predicted_character == 'G':
             pyautogui.press('volumemute')
             time.sleep(4)
-        elif predicted_character=='H':
-            break
+
         else:       
             cv2.putText(frame, predicted_character, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 1.3, (0, 0, 0), 3,
                         cv2.LINE_AA)
