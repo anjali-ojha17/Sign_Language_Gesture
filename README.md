@@ -62,5 +62,3 @@ This project is licensed under the MIT License. See the `LICENSE` file for detai
 - OpenCV for its powerful image processing capabilities.
 - PyAutoGUI for seamless PC automation.
 
-Happy coding! 🚀
-
